@@ -7,8 +7,7 @@
     "build": "babel src --ignore **/*.spec.js -d build",
     "lint": "eslint src",
     "pretest": "npm run lint",
-    "test": "cross-env NODE_ENV=test nyc mocha",
-    "postinstall": "npm run build"
+    "test": "cross-env NODE_ENV=test nyc mocha"
   },
   "repository": {
     "type": "git",
