@@ -70,7 +70,12 @@ function transformCssModules(_ref) {
         try {
             return require(filePathOrModuleName);
         } catch (e) {
-            return {}; // return empty object, this simulates result of ignored stylesheet file
+            // As a last resort, require the cssFile itself. This enables loading of CSS files from external deps
+            try {
+                return require(cssFile);
+            } catch (f) {
+                return {}; // return empty object, this simulates result of ignored stylesheet file
+            }
         }
     }
 
@@ -134,8 +139,8 @@ function transformCssModules(_ref) {
 
                     if (typeof processed !== 'string') processed = css;
 
-                    // set css content only if is new
-                    if (!cssMap.has(filepath) || cssMap.get(filepath) !== processed) {
+                    // update css content only if needed
+                    if (cssMap.get(filepath) !== processed) {
                         cssMap.set(filepath, processed);
                     }
 
@@ -206,11 +211,7 @@ function transformCssModules(_ref) {
                     args = _path$node.arguments;
 
 
-                if (calleeName !== 'require' || !args.length || !t.isStringLiteral(args[0])
-                // Should keep expression placed in Program or block
-                // because modular css without assignment to the variable
-                // has makes no sense
-                || t.isProgram(path.parentPath) || t.isBlockStatement(path.parentPath)) {
+                if (calleeName !== 'require' || !args.length || !t.isStringLiteral(args[0])) {
                     return;
                 }
 
