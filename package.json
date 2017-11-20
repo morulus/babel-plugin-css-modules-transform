@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-css-modules-transform",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Transform required css modules so one can use generated class names.",
   "main": "build/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/michalkvasnicak/babel-plugin-css-modules-transform#readme",
   "dependencies": {
-    "css-modules-require-hook": "^4.0.6",
+    "css-modules-require-hook": "github:morulus/css-modules-require-hook#d0f0770fef6bc0c447de8c82c435e46638e948d1",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {

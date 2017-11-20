@@ -52,7 +52,12 @@ export default function transformCssModules({ types: t }) {
         try {
             return require(filePathOrModuleName);
         } catch (e) {
-            return {}; // return empty object, this simulates result of ignored stylesheet file
+            // As a last resort, require the cssFile itself. This enables loading of CSS files from external deps
+            try {
+                return require(cssFile);
+            } catch (f) {
+                return {}; // return empty object, this simulates result of ignored stylesheet file
+            }
         }
     }
 
@@ -115,8 +120,8 @@ export default function transformCssModules({ types: t }) {
 
                 if (typeof processed !== 'string') processed = css;
 
-                // set css content only if is new
-                if (!cssMap.has(filepath) || cssMap.get(filepath) !== processed) {
+                // update css content only if needed
+                if (cssMap.get(filepath) !== processed) {
                     cssMap.set(filepath, processed);
                 }
 
