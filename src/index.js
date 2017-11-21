@@ -120,7 +120,7 @@ export default function transformCssModules({ types: t }) {
 
                 if (typeof processed !== 'string') processed = css;
 
-                // set css content only if is new
+                // update css content only if needed
                 if (!cssMap.has(filepath) || cssMap.get(filepath) !== processed) {
                     cssMap.set(filepath, processed);
                 }

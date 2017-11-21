@@ -12,3 +12,4 @@ export { default as processCss } from './processCss';
 export { default as processorOpts } from './processorOpts';
 export { default as rootDir } from './rootDir';
 export { default as use } from './use';
+export { default as noCache } from './noCache';
