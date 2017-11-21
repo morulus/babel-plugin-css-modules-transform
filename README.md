@@ -84,7 +84,8 @@ npm install --save-dev babel-plugin-css-modules-transform
                     "npm-module-name",
                     "./path/to/module-exporting-a-function.js"
                 ],
-                "extractCss": "./dist/stylesheets/combined.css"
+                "extractCss": "./dist/stylesheets/combined.css",
+                "noCache": false
             }
         ]
     ]

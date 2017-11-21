@@ -130,4 +130,13 @@ Object.defineProperty(exports, 'use', {
   }
 });
 
+var _noCache = require('./noCache');
+
+Object.defineProperty(exports, 'noCache', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_noCache).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
